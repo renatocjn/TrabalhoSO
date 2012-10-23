@@ -1,0 +1,55 @@
+Casos de uso:
+
+
+Nome: Copiar arquivo.
+Ator: Usuário.
+Objetivo: Copiar um arquivo de um diretório para outro qualquer.
+Fuxo de eventos: Usuário escolhe arquivo que deseja copiar, seleciona-o e usa a função de copiá-lo.
+
+Nome: Criar diretório.
+Ator: Usuário.
+Objetivo: Criar um novo diretório em um diretório já existente.
+Fuxo de eventos: Usuário entra em um diretório já existente, então seleciona a função para criar um novo diretório
+e dá o nome para esse novo diretório criado.
+
+Nome: Mudar de diretório.
+Ator: Usuário.
+Objetivo: Entrar em um diretório seguinte ou voltar para um diretório anterior ao atual.
+Fuxo de eventos: Usuário entra em um diretório, ao entrar ele escolhe um novo diretório para entrar ou então seleciona
+a função de voltar para o diretório anterior ao atual.
+
+Nome: Listar conteúdo do diretório.
+Ator: Usuário.
+Objetivo: Informar ao usuário o que existe em um certo diretório.
+Fuxo de eventos: Usuário entra no SO, vai utilizando o caso de uso de mudar de diretório até chegar ao diretório
+que deseja, então chama a função para listar o conteúdo do diretório.
+
+Nome: Mover arquivo ou diretório.
+Ator: Usuário.
+Objetivo: Mover um arquivo ou um diretório de um local para outro
+Fuxo de eventos: Usuário ao entrar no SO seleciona um arquivo ou um diretório que esteja em um diretório qualquer, 
+caso o usuário tenha permissão, ele aciona a função para movê-lo para um novo diretório.
+
+Nome: Remover arquivo ou diretório.
+Ator: Usuário.
+Objetivo: Remover um arquivo ou um diretório de um caso não tenha mais utilidade ou esteja com algum erro.
+Fuxo de eventos: Usuário ao entrar no SO seleciona um arquivo ou um diretório que esteja em um diretório qualquer, 
+caso o usuário tenha permissão, ele aciona a função para removê-lo, então o arquivo é removido do disco do sistema.
+
+Nome: Escrever arquivo.
+Ator: Usuário.
+Objetivo: Poder criar um novo arquivo texto.
+Fuxo de eventos: Usuário entra no SO, seleciona a função para escrever um arquivo, caso o arquivo não exista, usuário
+deve selecionar o diretório para salvá-lo, caso contrário o sistema só abre o arquivo já existente para sobrescrevê-lo.
+
+Nome: Mostrar conteúdo do arquivo.
+Ator: Usuário.
+Objetivo: Mostrar ao usupario o que há em um arquivo texto.
+Fuxo de eventos: Usuário ao entrar no SO, usuário entrará no diretório em que se encontra o arquivo desejado, então
+selecionará a função de mostrar o conteúdo do arquivo.
+
+Nome: Executar Script
+Ator: usuário
+Objetivo:
+Fluxo de eventos:  
+
