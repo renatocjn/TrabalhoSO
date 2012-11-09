@@ -9,13 +9,14 @@ public class uninplementedCmd extends SysCommand {
 	}
 
 	@Override
-	public void runNext() {
-		System.out.println("processos nao foram implementados!");
-	}
-
-	@Override
 	public String genLogString() {
 		return this.getClass().toString();
 	}
 
+	@Override
+	public boolean runStep() {
+		System.out.println("comando " + parameters[0]
+				+ " nao foi implementado ainda");
+		return true;
+	}
 }

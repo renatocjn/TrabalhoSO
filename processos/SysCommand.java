@@ -1,17 +1,19 @@
 package processos;
+
 public abstract class SysCommand implements Schedulable {
 
-	private String[] parameters;
+	protected String[] parameters;
 
-	private String desc;
- 
-	public SysCommand(String[] param, String description)
-	{
+	protected String desc;
+
+	public SysCommand(String[] param, String description) {
 		parameters = param;
-		desc = description; 
+		desc = description;
 	}
-	
-	public abstract void runNext();
 
+	@Override
 	public abstract String genLogString();
+
+	@Override
+	public abstract boolean runStep();
 }

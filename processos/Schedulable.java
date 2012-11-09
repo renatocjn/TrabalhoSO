@@ -1,8 +1,7 @@
 package processos;
+
 public interface Schedulable {
+	public String genLogString();
 
-	public abstract void runNext();
-
-	public abstract String genLogString();
-
+	public boolean runStep();
 }

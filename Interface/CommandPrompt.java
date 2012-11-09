@@ -1,57 +1,25 @@
 package Interface;
-import processos.Schedulable;
-import processos.SysCommand;
-import processos.Process;
-import processos.Scheduler;
+
 import java.util.Scanner;
 
-public class CommandPrompt implements Schedulable{ 
+import processos.Schedulable;
+import processos.Scheduler;
+import processos.SysCommand;
+
+public class CommandPrompt implements Schedulable {
+
 	private String user;
 	private String machine;
 	private Enviroment enviroment = new Enviroment();
 	private Scheduler scheduler;
 	private Scanner input = new Scanner(System.in);
-	private Logger log = new Logger(System.getenv("PWD")); //Temporary
-	public CommandPrompt(String usr, String mach, Scheduler sch)
-	{
+
+	public CommandPrompt(String usr, String mach, Scheduler sch) {
 		user = usr;
 		machine = mach;
 		scheduler = sch;
-		enviroment.addVariable("pwd", "/");
-	}
-
-	public String ReadInput() {
-		return input.next();
-	}
-
-	public SysCommand parsecmd(String cmd) {
-		return null;
-	}
-
-	public void promptLoop() 
-	{
-		System.out.print(user+"@"+machine+":"+enviroment.getvar("pwd")+"$");
-		String cmdStr = ReadInput();
-		SysCommand cmd = parsecmd(cmdStr);
-		if (cmd == null)
-		{
-			log.log("Prompt", "cnf: "+cmdStr);
-		}
-		else
-		{
-			scheduler.addSchedulable(cmd);
-			log.logCommand("Prompt", cmd);
-		}
-	}
-
-	public Process genNewProcess(SysCommand cmd) {
-		return null;
-	}
-
-	@Override
-	public void runNext() {
-		promptLoop();
-		
+		enviroment.addVariable("pwd", "/"); // temporario enquanto o modulo de
+											// armazenamento não funciona
 	}
 
 	@Override
@@ -59,4 +27,24 @@ public class CommandPrompt implements Schedulable{
 		return null;
 	}
 
+	public boolean promptLoop() {
+		System.out.print(user + "@" + machine + ":" + enviroment.getvar("pwd")
+				+ "$");
+		String cmdStr = input.next();
+		SysCommand cmd = CommandParser.parse(cmdStr);
+		if (cmd == null) {
+			Logger.log("prompt", "cnf: " + cmdStr);
+			System.out.println("   cnf: " + cmdStr);
+		} else {
+			scheduler.addSchedulable(cmd);
+			Logger.logCommand("prompt", cmd);
+		}
+		return false;
+	}
+
+	@Override
+	public boolean runStep() {
+		return promptLoop();
+
+	}
 }

@@ -1,6 +1,5 @@
 package kernel;
 
-import processos.Schedulable;
 import processos.Scheduler;
 import Interface.CommandPrompt;
 
@@ -9,10 +8,11 @@ public class Kernel {
 		Scheduler sch = new Scheduler();
 		CommandPrompt prt = new CommandPrompt(args[0], args[1], sch);
 		sch.addSchedulable(prt);
-		while(true)
-		{
-			Schedulable next = sch.decideNext();
-			next.runNext();
+		while (true) {
+			long next = sch.decideNext();
+			boolean done = sch.getSchedulable(next).runStep();
+			if (done)
+				sch.removeSchedulable(next);
 		}
 	}
 
