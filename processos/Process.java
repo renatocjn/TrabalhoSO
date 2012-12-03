@@ -1,37 +1,22 @@
 package processos;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class Process implements Schedulable {
-
-	private Map<String, Object> variables = new HashMap<String, Object>();
-
-	private int icounter;
-
-	private int sleepc;
-
-	public Process(int pid) {
-		// TODO Auto-generated constructor stub
+public abstract class Process {
+	public int priority;
+	long burstTime;
+	
+	public Process(int pri, long burst) {
+		priority = pri;
+		burstTime = burst;
 	}
-
-	@Override
-	public String genLogString() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public Process(long burst) {
+		priority = 0;
+		burstTime = burst;
 	}
-
-	@Override
-	public boolean runStep() {
-		// TODO Auto-generated method stub
-		return true;
+	
+	public long getRemainingBurst() {
+		return burstTime;
 	}
-
-	public void sleep() {
-		// TODO
-	}
-
-	public void sleep(int t) {
-		// TODO
-	}
+	
+	public abstract void run();
 }
