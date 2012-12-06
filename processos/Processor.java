@@ -1,5 +1,5 @@
 package processos;
 
-public class Processor {
+public class Processor extends Thread{
 
 }

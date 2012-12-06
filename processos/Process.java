@@ -18,5 +18,5 @@ public abstract class Process {
 		return burstTime;
 	}
 	
-	public abstract void run();
+	public abstract void exec();
 }
