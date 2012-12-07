@@ -15,17 +15,17 @@ public class Dispatcher extends Thread {
 		Set<Queue> set = pairs.get(p);
 		set.add(q);
 	}
-	void chkLoop()
-	{
+
+	void chkLoop() {
 		this.start();
 	}
+
 	@Override
 	public void run() {
-		while(true){
-			for(Processor p : pairs.keySet()){
-				if(p.isInterrupted())
-				{
-					//TODO
+		while (true) {
+			for (Processor p : pairs.keySet()) {
+				if (p.isInterrupted()) {
+					// TODO
 				}
 			}
 		}

@@ -1,6 +1,5 @@
 package Interface;
 
-import processos.SysCommand;
 
 public class CommandParser {
 

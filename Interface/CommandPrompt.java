@@ -2,9 +2,7 @@ package Interface;
 
 import java.util.Scanner;
 
-import processos.Schedulable;
 import processos.Scheduler;
-import processos.SysCommand;
 
 public class CommandPrompt implements Schedulable {
 

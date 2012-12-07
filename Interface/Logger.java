@@ -5,8 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 
-import processos.SysCommand;
-
 public class Logger {
 
 	private static String logFolderPath = "."; // temporario até modulo de
