@@ -8,7 +8,7 @@ import java.util.List;
 public class Dispatcher extends Thread {
 	Map<Processor, List<Queue>> pairs = new HashMap<Processor, List<Queue>>();
 	Map<Processor, Integer> counters = new HashMap<Processor, Integer>();
-	
+
 	public void addPair(Processor p, Queue q) {
 		if (!pairs.containsKey(p)) {
 			pairs.put(p, new LinkedList<Queue>());
@@ -27,11 +27,10 @@ public class Dispatcher extends Thread {
 		while (true) {
 			for (Processor proc : pairs.keySet()) {
 				if (proc.isInterrupted()) {
-					//TODO, testar; nao acho que funciona
 					List<Queue> queues = pairs.get(proc);
 					Integer counter = counters.get(proc);
 					Queue q = queues.get(counter);
-					counters.put(proc, (counter+1)%queues.size());
+					counters.put(proc, (counter + 1) % queues.size());
 					Process p = q.next();
 					proc.exec(p);
 				}

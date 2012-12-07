@@ -23,7 +23,7 @@ public class MultiLevelQueue extends Thread {
 	public void managerLoop() {
 		this.start();
 	}
-	
+
 	public void managerLoop(QueueManager qm) {
 		manager = qm;
 		this.start();
@@ -34,9 +34,12 @@ public class MultiLevelQueue extends Thread {
 		while (manager != null) {
 			try {
 				Thread.sleep(SLEEP_DURATION);
+				System.out.println("Executando Multi manager");
+				System.out.println(queues);
 				for (Queue q : queues) {
 					manager.updateQueue(q);
 				}
+				System.out.println("Fim manager");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

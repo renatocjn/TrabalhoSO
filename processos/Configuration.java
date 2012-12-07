@@ -46,12 +46,13 @@ public class Configuration {
 		Configuration configuration = new Configuration();
 		Scanner input = new Scanner(fp);
 		int processorNumber = input.nextInt();
+		System.out.println("Pnumber: " + processorNumber);
 		configuration.setConf(NPROCESSORS, processorNumber);
 		int multLevelQueueNumber = input.nextInt();
+		System.out.println("multinumber: " + multLevelQueueNumber);
 		configuration.setConf(NMULTLVLQUEUES, multLevelQueueNumber);
-		int queueNumber = input.nextInt();
 		List<Configuration.QueueDescription> descriptions = new LinkedList<Configuration.QueueDescription>();
-		for (int i = 0; i < queueNumber; i++) {
+		while (input.hasNextLine()) {
 			int mqid = input.nextInt();
 			int pid = input.nextInt();
 			String alg = input.nextLine();
@@ -59,7 +60,7 @@ public class Configuration {
 		}
 		configuration.setConf(QUEUES, descriptions);
 		input.close();
-		return null;
+		return configuration;
 	}
 
 	public static Configuration parseConfig(String pathname)
@@ -67,12 +68,16 @@ public class Configuration {
 		return parseConfig(new File(pathname));
 	}
 
+	@SuppressWarnings("finally")
 	public static boolean chkConfig(Configuration c) {
-		if (!(c.getConf(NPROCESSORS) instanceof Integer)
-				|| !(c.getConf(NMULTLVLQUEUES) instanceof Integer)
-				|| !(c.getConf(QUEUES) instanceof List<?>)) {
-			return false;
+		try {
+			if (!(c.getConf(NPROCESSORS) instanceof Integer)
+					|| !(c.getConf(NMULTLVLQUEUES) instanceof Integer)
+					|| !(c.getConf(QUEUES) instanceof List<?>)) {
+				return false;
+			}
+		} finally {
+			return true;
 		}
-		return true;
 	}
 }

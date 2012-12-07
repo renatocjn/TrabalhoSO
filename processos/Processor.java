@@ -1,15 +1,11 @@
 package processos;
 
 public class Processor extends Thread {
-	Process currentProcess;
+	Process currentProcess = null;
 
 	public Processor() {
-		try {
-			this.start();
-			this.wait();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		//this.start();
+		//this.interrupt();
 	}
 
 	public Process getCurrentProcess() {
@@ -18,12 +14,21 @@ public class Processor extends Thread {
 
 	public void exec(Process p) {
 		currentProcess = p;
-		this.notify();
+		System.out.println("testeProcessors start");
+		this.start();
+		System.out.println("testeProcessors start fim");
 	}
 
 	@Override
 	public void run() {
-		//TODO
-		super.run();
+//		while(true){
+//			if(currentProcess != null) {
+//				currentProcess.exec();
+//			}
+//			this.interrupt();
+//		}
+		System.out.println("testeProcessors run");
+		currentProcess.exec();
+		System.out.println("testeProcessors run fim");
 	}
 }

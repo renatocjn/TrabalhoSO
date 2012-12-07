@@ -1,6 +1,5 @@
 package Interface;
 
-
 public class CommandParser {
 
 	// lista de programas do sistema

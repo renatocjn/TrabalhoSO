@@ -13,7 +13,9 @@ public class Queue {
 	}
 
 	public Process next() {
-		return scheduler.getNext(this);
+		Process p = scheduler.getNext(this);
+		processes.remove(p);
+		return p;
 	}
 
 	public long getArrivelTime(Process p) {
