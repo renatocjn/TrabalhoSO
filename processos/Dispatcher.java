@@ -1,18 +1,20 @@
 package processos;
 
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
 public class Dispatcher extends Thread {
-	Map<Processor, Set<Queue>> pairs = new HashMap<Processor, Set<Queue>>();
-
+	Map<Processor, List<Queue>> pairs = new HashMap<Processor, List<Queue>>();
+	Map<Processor, Integer> counters = new HashMap<Processor, Integer>();
+	
 	public void addPair(Processor p, Queue q) {
 		if (!pairs.containsKey(p)) {
-			pairs.put(p, new HashSet<Queue>());
+			pairs.put(p, new LinkedList<Queue>());
+			counters.put(p, 0);
 		}
-		Set<Queue> set = pairs.get(p);
+		List<Queue> set = pairs.get(p);
 		set.add(q);
 	}
 
@@ -23,9 +25,15 @@ public class Dispatcher extends Thread {
 	@Override
 	public void run() {
 		while (true) {
-			for (Processor p : pairs.keySet()) {
-				if (p.isInterrupted()) {
-					// TODO
+			for (Processor proc : pairs.keySet()) {
+				if (proc.isInterrupted()) {
+					//TODO, testar; nao acho que funciona
+					List<Queue> queues = pairs.get(proc);
+					Integer counter = counters.get(proc);
+					Queue q = queues.get(counter);
+					counters.put(proc, (counter+1)%queues.size());
+					Process p = q.next();
+					proc.exec(p);
 				}
 			}
 		}

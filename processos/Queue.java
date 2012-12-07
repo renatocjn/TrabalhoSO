@@ -8,13 +8,20 @@ public class Queue {
 	Map<Process, Long> processes = new HashMap<Process, Long>();
 	ScheduleAlgorithm scheduler;
 
+	public Queue(ScheduleAlgorithm sch) {
+		scheduler = sch;
+	}
+
 	public Process next() {
 		return scheduler.getNext(this);
 	}
 
 	public long getArrivelTime(Process p) {
-		// TODO
-		return processes.get(p);
+		Long t = processes.get(p);
+		if (t != null)
+			return t;
+		else
+			return -1;
 	}
 
 	public Set<Process> getProcesses() {
