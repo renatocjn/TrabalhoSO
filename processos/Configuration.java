@@ -53,6 +53,7 @@ public class Configuration {
 			descriptions.add(new QueueDescription(mqid, pid, alg));
 		}
 		configuration.setConf("queueDescriptions", descriptions);
+		input.close();
 		return null;
 	}
 	
