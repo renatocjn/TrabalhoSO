@@ -33,7 +33,6 @@ public class Scheduler {
 			int pid = desc.pid;
 
 			String alg = desc.algorithm.trim();
-			System.out.println(alg);
 			ScheduleAlgorithm aux = null;
 			if (alg.toUpperCase().equals("FCFS"))
 				aux = new FCFS();

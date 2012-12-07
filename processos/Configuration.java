@@ -46,10 +46,8 @@ public class Configuration {
 		Configuration configuration = new Configuration();
 		Scanner input = new Scanner(fp);
 		int processorNumber = input.nextInt();
-		System.out.println("Pnumber: " + processorNumber);
 		configuration.setConf(NPROCESSORS, processorNumber);
 		int multLevelQueueNumber = input.nextInt();
-		System.out.println("multinumber: " + multLevelQueueNumber);
 		configuration.setConf(NMULTLVLQUEUES, multLevelQueueNumber);
 		List<Configuration.QueueDescription> descriptions = new LinkedList<Configuration.QueueDescription>();
 		while (input.hasNextLine()) {

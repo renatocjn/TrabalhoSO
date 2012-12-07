@@ -27,22 +27,18 @@ public class Dispatcher extends Thread {
 		while (true) {
 			for (Processor proc : pairs.keySet()) {
 				try {
-					this.sleep(SLEEPTIME);
+					Thread.sleep(SLEEPTIME);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				System.out.println("Dispatcher inicio");
 				if (!proc.chkState()) {
-					System.out.println("Dispatcher exec");
 					List<Queue> queues = pairs.get(proc);
 					Integer counter = counters.get(proc);
 					Queue q = queues.get(counter);
 					counters.put(proc, (counter + 1) % queues.size());
 					Process p = q.next();
 					proc.exec(p);
-					System.out.println("Dispatcher exec fim");
 				}
-				System.out.println("Dispatcher FIM");
 			}
 		}
 	}

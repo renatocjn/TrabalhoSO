@@ -6,7 +6,7 @@ import java.util.List;
 public class MultiLevelQueue extends Thread {
 	List<Queue> queues = new LinkedList<Queue>();
 	QueueManager manager;
-	public static final long SLEEP_DURATION = 10000;
+	public static final long SLEEP_DURATION = 5000;
 
 	public MultiLevelQueue(QueueManager qm) {
 		manager = qm;
@@ -34,12 +34,9 @@ public class MultiLevelQueue extends Thread {
 		while (manager != null) {
 			try {
 				Thread.sleep(SLEEP_DURATION);
-				System.out.println("Executando Multi manager");
-				System.out.println(queues);
 				for (Queue q : queues) {
 					manager.updateQueue(q);
 				}
-				System.out.println("Fim manager");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
