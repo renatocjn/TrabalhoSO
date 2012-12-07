@@ -12,13 +12,11 @@ public class FCFS implements ScheduleAlgorithm {
 		Process aux = null;
 
 		for (Process p : q.getProcesses()) {
-			if (q.getArrivelTime(p) < time) // pega o processo com o menor tempo
-											// de chegada!!!
+			if (q.getArrivelTime(p) < time) // pega o processo com o menor tempo de chegada!!!
 			{
 				time = q.getArrivelTime(p);
 				aux = p;
 			}
-
 		}
 
 		return aux;
