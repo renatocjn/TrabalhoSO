@@ -22,5 +22,4 @@ public class Priority implements ScheduleAlgorithm{
 		
 		return aux;
 	}
-
 }
